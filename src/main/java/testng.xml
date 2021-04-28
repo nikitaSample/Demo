@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite parallel="false" name="Suite">
+<listeners>
+	<listener> class-name = "utilities.RetryListener"</listener>
+</listeners>>
   <test name="Test">
     <classes>
       <class name="testScripts.EntryTest"/>
