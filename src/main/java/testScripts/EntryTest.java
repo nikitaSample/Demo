@@ -56,7 +56,7 @@ public class EntryTest extends CommonActionsUI {
 		logger.log(LogStatus.INFO, "Low temperature from API response : "+apiLowTemp);
 	}
 	
-	/*@Test
+	@Test
 	public void weatherFromBBC() throws Exception {
 		getUrl();
 		BBCWeatherPageMethods obj = new BBCWeatherPageMethods();
@@ -83,5 +83,5 @@ public class EntryTest extends CommonActionsUI {
 	public void tearDown() {
 		DriverSetUp.closeDriver();
 		ReportSetUp.closeReport();
-	}*/
+	}
 }
