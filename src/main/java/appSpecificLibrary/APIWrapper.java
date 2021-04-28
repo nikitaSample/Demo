@@ -9,6 +9,9 @@ public class APIWrapper {
 	String baseURL = Helpers.readConfigFile("BASE_URL");
 	RESTUtilities util;
 	
+	public APIWrapper(){
+		util = new RESTUtilities();
+	}
 	public Response getCurrentWeatherCityName(Map<String,String> testData) throws Exception {
 		
 		Response resp;
