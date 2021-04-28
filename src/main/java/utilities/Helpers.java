@@ -17,6 +17,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
 public class Helpers {
 
 	////to read data from config file
@@ -75,6 +78,16 @@ public class Helpers {
 		//Execute query and return data in resultset
 		stmt = conn.createStatement();
 		return stmt.executeQuery(query);
+		
+	}
+	
+	////to fetch required value from response body
+	public static String readValueFromJSONResponse(Response resp, String key) throws Exception {
+		try {
+			return JsonPath.from(resp.getBody().asString()).get(key).toString();
+		}catch(Exception e){
+			throw new Exception("Specified key not found in the response body.Key : "+key);		
+		}
 		
 	}
 
