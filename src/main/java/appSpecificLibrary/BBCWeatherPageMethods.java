@@ -18,7 +18,7 @@ public class BBCWeatherPageMethods extends BBCWeatherPageObjects{
 			obj.inputText(getSearchCityField(), cityName);
 			obj.waitForElementList(getListCities(), timeOut);
 			obj.selectFromDynamicDropdown(getListCities(), cityName);
-			obj.waitForElementToBeVisible(getHighTemp(), timeOut);
+			obj.waitForElementToBeVisible(getTempCard(), timeOut);
 			
 			try {
 				uiData.put("High", obj.getText(getHighTemp()));

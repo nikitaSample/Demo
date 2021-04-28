@@ -41,6 +41,12 @@ public class BBCWeatherPageObjects {
 			return searchBtn;
 		}
 		
+		@FindBy(xpath = "//a[@id='daylink-0']")
+		private WebElement tempCard;
+		public WebElement getTempCard() {
+			return tempCard;
+		}
+		
 		@FindBy(xpath = "//a[@id='daylink-0']//span[@class='wr-day-temperature__high-value']//span[@class='wr-value--temperature--f']")
 		private WebElement highTemp;
 		public WebElement getHighTemp() {
