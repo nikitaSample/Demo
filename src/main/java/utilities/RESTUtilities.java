@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 public class RESTUtilities {
 
 	public Response get(String url, Map<String,String> map) {
-
 		Response resp;
 		if(map.size()>0) {
 			resp = RestAssured.given()
@@ -21,7 +20,6 @@ public class RESTUtilities {
 					.header("Content-Type","application/json;charset=UTF-8")
 					.log().all()
 					.get(url);
-
 		}
 		return resp;	
 	}
