@@ -16,6 +16,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import appSpecificLibrary.APIWrapper;
 import appSpecificLibrary.BBCWeatherPageMethods;
+import appSpecificLibrary.BBCWeatherReadTempPageMethods;
 import io.restassured.response.Response;
 import utilities.CommonActionsUI;
 import utilities.DriverSetUp;
@@ -63,7 +64,10 @@ public class EntryTest extends CommonActionsUI {
 		
 		getUrl();
 		BBCWeatherPageMethods obj = new BBCWeatherPageMethods();
-		Map<String,String> output = obj.getWeatherDetails(cityName); ////parameterized using excel
+		BBCWeatherReadTempPageMethods objTemp = new BBCWeatherReadTempPageMethods();
+		
+		obj.searchCityByName(cityName);
+		Map<String,String> output = objTemp.getWeatherDetails(); ////parameterized using excel
 		
 		String uiHighTemp = output.get("High").substring(0, output.get("High").length()-1);
 		String uiLowTemp = output.get("Low").substring(0, output.get("Low").length()-1);
