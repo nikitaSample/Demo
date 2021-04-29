@@ -3,6 +3,8 @@ package appSpecificLibrary;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.testng.Assert;
+
 import utilities.CommonActionsUI;
 
 public class BBCWeatherPageMethods extends BBCWeatherPageObjects{
@@ -12,6 +14,7 @@ public class BBCWeatherPageMethods extends BBCWeatherPageObjects{
 		
 		public void searchCityByName(String cityName) throws Exception{			
 			
+			Assert.assertTrue(obj.isElementPresent(getWeatherLogo()));
 			obj.Click(getSearchCityField());
 			obj.inputText(getSearchCityField(), cityName);
 			obj.waitForElementList(getListCities(), timeOut);
