@@ -1,12 +1,14 @@
 package testScripts;
 
 
+import java.io.IOException;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.ExtentTest;
@@ -27,7 +29,7 @@ public class EntryTest extends CommonActionsUI {
 	String apiLowTemp;
 	ExtentTest logger = ReportSetUp.reportLog("Sample", "Match temperatures from OpenWeatherAPI and BBCWeatherUI");
   
-	@Test()
+	@Test(priority=1)
 	public void weatherFromApi() throws Exception{
 		
 		APIWrapper objApi = new APIWrapper();
@@ -56,11 +58,12 @@ public class EntryTest extends CommonActionsUI {
 		logger.log(LogStatus.INFO, "Low temperature from API response : "+apiLowTemp);
 	}
 	
-	@Test
-	public void weatherFromBBC() throws Exception {
+	@Test(priority=2, dataProvider="uiData")
+	public void weatherFromBBC(String cityName) throws Exception {
+		
 		getUrl();
 		BBCWeatherPageMethods obj = new BBCWeatherPageMethods();
-		Map<String,String> output = obj.getWeatherDetails("London, Greater London"); ////parameterize using excel
+		Map<String,String> output = obj.getWeatherDetails(cityName); ////parameterized using excel
 		
 		String uiHighTemp = output.get("High").substring(0, output.get("High").length()-1);
 		String uiLowTemp = output.get("Low").substring(0, output.get("Low").length()-1);
@@ -77,6 +80,11 @@ public class EntryTest extends CommonActionsUI {
 			logger.log(LogStatus.FAIL, "Low temperature captured from UI and API are different.");
 			assertThat((new Object[]{uiHighTemp, uiLowTemp}), is(new Object[]{apiHighTemp, apiLowTemp}));
 		}
+	}
+	
+	@DataProvider
+	public Object[][] uiData() throws IOException{
+		return Helpers.readExcel("UIWeather.xlsx", "Sheet1");
 	}
 	
 	@AfterClass
