@@ -6,12 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import utilities.DriverSetUp;
+import utilities.Helpers;
 
 public class BBCWeatherReadTempObjects {
 
 	WebDriver driver = DriverSetUp.getBrowser();
 	public BBCWeatherReadTempObjects() {
-		PageFactory.initElements(driver, this);
+		Helpers.initElements(driver, this, BBCWeatherReadTempObjects.class);
 	}
 
 	@FindBy(xpath = "//a[@id='daylink-0']")
